@@ -1,0 +1,17 @@
+<h1>投稿編集ページ</h1>
+<%= form_with model: @post,url: post_path(@post.id),method: :patch,local: true do |f| %>
+  <%= render 'shared/error_messages', model: f.object%>
+  <div class = "ml-5 ">
+    <%= f.text_field :title,placeholder:"タイトル" %>
+  </div>
+  <div class = "ml-5 mt-4">
+    <%= f.file_field :image %>
+  </div>
+
+  <div class = "ml-5 mt-4">
+    <%= f.text_area :text,placeholder:"テキスト" %>
+  </div>
+  <div class ="ml-5 mt-4">
+    <%= f.submit "投稿する"%>
+  </div>
+<% end %>

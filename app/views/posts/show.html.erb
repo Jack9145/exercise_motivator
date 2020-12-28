@@ -5,7 +5,10 @@
       <%= image_tag @post.image ,:size =>'320x480', class: 'message-image' %>
       <h5 class="card-title"><%= @post.title%></h5>
       <p class="card-text"><%= @post.text%></p>
-      <%= link_to "編集する","#"%>
+      <%= @post.user.nickname %>
+      <% if current_user.id === @post.user_id%>
+        <%= link_to "編集する", edit_post_path(@post.id) %>
+      <% end %>
       <%= link_to "コメントする","#"%>
     </div>
   </div>

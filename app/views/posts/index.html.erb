@@ -8,6 +8,7 @@
           <%= image_tag post.image ,:size =>'320x480', class: 'message-image' %>
           <h5 class="card-title"><%= post.title%></h5>
           <p class="card-text"><%= post.text%></p>
+          <%= post.user.nickname %>
           <%= link_to "詳細", post_path(post.id) %>
         </div>
       </div>
