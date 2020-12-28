@@ -1,6 +1,8 @@
 class PostsController < ApplicationController
-  #before_action :authenticate_user!
-  before_action :user_confirmation, except: :index
+  before_action :authenticate_user! , except: :index
+  before_action :find_post, only: [:show, :edit,:update]
+  before_action :user_confirmation, only: [:edit, :update]
+  
   def index
     @post = Post.new
     @posts = Post.all
@@ -20,7 +22,18 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find(params[:id])
+  end
+
+  def edit
+    
+  end
+
+  def update
+    if @post.update(post_params)
+      redirect_to root_path
+    else
+      render :edit
+    end
   end
 
   private
@@ -28,9 +41,13 @@ class PostsController < ApplicationController
     params.require(:post).permit(:title,:text,:image).merge(user_id: current_user.id)
   end
 
+  def find_post
+    @post = Post.find(params[:id])
+  end
+
   def user_confirmation
-    unless user_signed_in?
-      redirect_to new_user_session_path
+    unless current_user.id === @post.user_id
+      redirect_to root_path
     end
   end
 end
