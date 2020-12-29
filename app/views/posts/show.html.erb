@@ -1,16 +1,51 @@
-<h1>Show</h1>
-<div class="card-columns">
-  <div class = "card mt-3">
-    <div class="card-body">
-      <%= image_tag @post.image ,:size =>'320x480', class: 'message-image' %>
-      <h5 class="card-title"><%= @post.title%></h5>
-      <p class="card-text"><%= @post.text%></p>
-      <%= @post.user.nickname %>
-      <% if current_user.id === @post.user_id%>
-        <%= link_to "編集する", edit_post_path(@post.id) %>
-        <%= link_to "削除する", post_path(@post.id), method: :delete %>
-      <% end %>
-      <%= link_to "コメントする","#"%>
+<div class="ml-5">  
+  <h1>Show</h1>
+  <div class="card-columns ml-5">
+    <div class = "card mt-3">
+      <div class="card-body">
+        <a href="#">
+          <%= image_tag @post.image.variant(combine_options:{gravity: :center, resize:"640x640^", crop:"640x640+0+0"}).processed, class: 'message-image' %>
+        </a>
+        <h5 class="card-title"><%= @post.title%></h5>
+        <p class="card-text"><%= @post.text%></p>
+        <%= @post.user.nickname %>
+        <% if current_user.id === @post.user_id%>
+          <%= link_to "編集する", edit_post_path(@post.id) %>
+          <%= link_to "削除する", post_path(@post.id), method: :delete %>
+        <% end %>
+        <button type="button" class="btn btn-primary ml-5" data-toggle="modal" data-target="#modal1">コメントする</button>
+        <div class="modal fade" id="modal1" tabindex="-1"
+              role="dialog" aria-labelledby="label1" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="label1">コメント</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <%= form_with model: @comment,url: post_comments_path(@post.id), remote: true do |f|%>
+                <div class="modal-body">
+                  <div class="form-group">
+                    <%= f.label :text , "テキスト"%>
+                    <%= f.text_area :text, class:"form-control" %>
+                 </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+                  <%= f.submit "コメントする", class: "btn btn-primary"%>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="comments">
+    <h4>＜コメント一覧＞</h4>
+    <div class="comment-form">
+      <%= render "comments", comments: @comments%>
     </div>
   </div>
 </div>
