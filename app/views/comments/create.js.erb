@@ -1,0 +1,4 @@
+$("textarea").val("");
+$("input").val("");
+$("#modal1").modal("hide")
+$(".comment-form").html("<%= escape_javascript(render "posts/comments", comments: @comments)%>")
