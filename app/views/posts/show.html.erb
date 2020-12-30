@@ -4,7 +4,7 @@
     <div class = "card mt-3">
       <div class="card-body">
         <a href="#">
-          <%= image_tag @post.image.variant(combine_options:{gravity: :center, resize:"640x640^", crop:"640x640+0+0"}).processed, class: 'message-image' %>
+          <%= image_tag @post.image, class: 'message-image' %>
         </a>
         <h5 class="card-title"><%= @post.title%></h5>
         <p class="card-text"><%= @post.text%></p>
