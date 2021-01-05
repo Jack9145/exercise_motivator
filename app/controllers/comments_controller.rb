@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action: user_confirmation, only: [:create,:destroy]
+  
   def create 
     @comment = Comment.create(comment_params)
     find_post
@@ -21,10 +21,4 @@ class CommentsController < ApplicationController
   def find_post
     @post = @comment.post
   end 
-
-  def user_confirimation
-    unless current_user.id == @comment.id
-      redirect_to root_path
-    end
-  end
 end
