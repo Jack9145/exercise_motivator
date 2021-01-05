@@ -2,5 +2,8 @@
   <p>
     <strong><%= link_to comment.user.nickname, "#" %>：</strong>
     <%= comment.text %>
+    <% if comment.user_id == current_user.id %>
+      <%= link_to "削除する", post_comment_path(comment.post.id,comment.id),method: :delete %>
+    <% end %>
   </p>
 <% end %>
