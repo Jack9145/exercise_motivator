@@ -29,11 +29,11 @@
 
 ## comments テーブル
 
-| Column   | Type       | Options                        |
-| -------- | ---------- | ------------------------------ |
-| text     | text       | null: false                    |
-| user     | references | null: false, foreign_key: true |
-| post     | references | null: false, foreign_key: true |
+| Column   | Type       | Options     |
+| -------- | ---------- | ----------- |
+| text     | text       | null: false |
+| user_id  | integer    | null: false |
+| post_id  | integer    | null: false |
 
 ### Association
 - belongs_to :posts
@@ -42,10 +42,10 @@
 
 ## favorites テーブル
 
-| Column   | Type       | Options                        |
-| -------- | ---------- | ------------------------------ |
-| user     | references | null: false, foreign_key: true |
-| post     | references | null: false, foreign_key: true |
+| Column   | Type       | Options     |
+| -------- | ---------- | ----------- |
+| user_id  | integer    | null: false |
+| post_id  | integer    | null: false |
 
 ### Association
 - belongs_to :posts

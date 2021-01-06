@@ -9,11 +9,24 @@
         <h5 class="card-title"><%= @post.title%></h5>
         <p class="card-text"><%= @post.text%></p>
         <%= @post.user.nickname %>
-        <% if current_user.id === @post.user_id%>
-          <%= link_to "編集する", edit_post_path(@post.id) %>
-          <%= link_to "削除する", post_path(@post.id), method: :delete %>
-        <% end %>
-        <button type="button" class="btn btn-primary ml-5" data-toggle="modal" data-target="#modal1">コメントする</button>
+        <div class="float-right ">
+          <% if current_user.id === @post.user_id%>
+            <%= link_to "編集", edit_post_path(@post.id) %>
+            <%= link_to "削除", post_path(@post.id), method: :delete %>
+          <% end %>
+          <div>
+            <% if current_user.already_favorited?(@post) %>
+              <%= link_to  post_favorites_path(@post), method: :delete do %>
+                <i class="fas fa-heart heart"><%= @post.favorites.count%></i>
+              <% end %>
+            <% else %>
+              <%= link_to post_favorites_path(@post), method: :post do %>
+                <i class="far fa-heart heart"><%= @post.favorites.count%></i>
+              <% end %>
+            <% end %>
+            <a href="#" data-toggle="modal" data-target="#modal1"><i class="far fa-comment ml-2"></i></a>
+          </div>
+        </div>
         <div class="modal fade" id="modal1" tabindex="-1"
               role="dialog" aria-labelledby="label1" aria-hidden="true">
           <div class="modal-dialog" role="document">
