@@ -5,9 +5,11 @@
   <li class="nav-item">
     <a href="#contents2" class="nav-link" data-toggle="tab"><%= @user.nickname%>さんの投稿一覧</a>
   </li>
-  <li class="nav-item">
-    <a href="#contents3" class="nav-link" data-toggle="tab">タブ3</a>
-  </li>
+  <% if current_user.id == @user.id%>
+    <li class="nav-item">
+      <a href="#contents3" class="nav-link" data-toggle="tab">プロフィールの推移</a>
+    </li>
+  <% end %>
 </ul>
 <div class="tab-content">
     <div id="contents1" class="tab-pane active">
@@ -17,7 +19,7 @@
         <%= render "post" %>
     </div>
     <div id="contents3" class="tab-pane">
-        <p>タブ3のコンテンツ</p>
+        <%= render "detail" %>
     </div>
 </div>
 

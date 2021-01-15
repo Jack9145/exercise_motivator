@@ -1,22 +1,27 @@
 <div class="text-center mt-3">
   <h1><%= @user.nickname%>さんのプロフィール</h1>
 
-  <% if @profile.present? %>
-  <h3 class="mt-3">
-    <strong>身長</strong> : <%= @profile.height %>cm
-  </h3>
-  <h3 class="mt-3">
-    <strong>体重</strong> : <%= @profile.weight %>kg
-  </h3>
-  <h3 class="mt-3">
-    <strong>体脂肪率</strong> : <%= @profile.fat_rate %>%
-  </h3>
-  <h3 class="mt-3">
-    <strong>BMI</strong> : <%= @bmi %>
-  </h3>
-
+  <% if @profile_today.present? && @profile_today.user_id == current_user.id %>
+    <h3 class="mt-3">
+      <strong>身長</strong> : <%= @profile_today.height %>cm
+    </h3>
+    <h3 class="mt-3">
+      <strong>体重</strong> : <%= @profile_today.weight %>kg
+    </h3>
+    <h3 class="mt-3">
+      <strong>体脂肪率</strong> : <%= @profile_today.fat_rate %>%
+    </h3>
+    <h3 class="mt-3">
+      <strong>BMI</strong> : <%= @bmi %>
+    </h3>
+  <% else %>
+    <h2>今日のプロフィールはまだ入力されていません</h2>
   <% end %>
   <% if current_user.id == @user.id%>
-    <%= link_to "プロフィールを登録する", new_user_profile_path(@user.id) ,class:"btn btn-info mt-4"%>
+    <% if @profile_today.present? && @profile_today.user_id == current_user.id%>
+      <%= link_to "プロフィールを更新する" ,edit_user_profile_path(@user.id,@profile_today.id) ,class:"btn btn-primary mt-4"%>
+    <% else %>
+       <%= link_to "今日のプロフィールを登録する", new_user_profile_path(@user.id), class:"btn btn-info mt-4"%>
+    <% end %>
   <% end %>
 </div>
