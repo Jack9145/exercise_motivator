@@ -85,8 +85,8 @@ class ProfilesController < ApplicationController
     end 
   end
 
-  def user_confirmation
-    unless current_user.id === @profile.user_id
+  def confirmation_user
+    unless current_user.id === @user.id
       redirect_to root_path
     end
   end
