@@ -9,7 +9,7 @@ exercise motivator
 https://exercise-motivator.herokuapp.com/
 
 ## テスト用アカウント
-メールアドレス : test@gmail.com
+メールアドレス : test@gmail.com  
 パスワード : test1234
 
 ## 利用方法
