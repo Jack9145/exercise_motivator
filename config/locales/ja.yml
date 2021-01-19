@@ -12,6 +12,10 @@ ja:
         text: テキスト
         title: タイトル
         image: 画像
+      profile:
+        height: 身長
+        weight: 体重
+        fat_rate: 体脂肪率
   date:
     abbr_day_names:
     - 日
