@@ -1,64 +1,67 @@
-<div class="ml-5">  
-  <h1>Show</h1>
-  <div class="card-columns ml-5">
-    <div class = "card mt-3">
-      <div class="card-body">
-        <a href="#">
-          <%= image_tag @post.image, class: 'message-image' %>
-        </a>
-        <h5 class="card-title"><%= @post.title%></h5>
-        <p class="card-text"><%= @post.text%></p>
-        <%= @post.user.nickname %>
-        <div class="float-right ">
-          <% if current_user.id === @post.user_id%>
-            <%= link_to "編集", edit_post_path(@post.id) %>
-            <%= link_to "削除", post_path(@post.id), method: :delete %>
+<div class="ml-5 mt-3">  
+  <div class = "card mx-auto border-info bg-light" style =" width: 500px;">
+    <div class="card-body">
+      <div class="float-right">
+        <% if current_user.id === @post.user_id%>
+          <%= link_to edit_post_path(@post.id) do %>
+            <i class="fas fa-edit fa-lg"></i>
           <% end %>
-          <div>
-            <% if current_user.already_favorited?(@post) %>
-              <%= link_to  post_favorites_path(@post), method: :delete do %>
-                <i class="fas fa-heart heart"><%= @post.favorites.count%></i>
-              <% end %>
-            <% else %>
-              <%= link_to post_favorites_path(@post), method: :post do %>
-                <i class="far fa-heart heart"><%= @post.favorites.count%></i>
-              <% end %>
+          <%= link_to post_path(@post.id), method: :delete do %>
+            <i class="far fa-times-circle fa-lg" style="color: grey;"></i>
+          <% end %>
+        <% end %>
+      </div>
+      <a href="#">
+        <%= image_tag @post.image, class: 'message-image' %>
+      </a>
+      <h5 class="card-title mt-2"><%= @post.title%></h5>
+      <p class="card-text"><%= @post.text%></p>
+      <%= @post.user.nickname %>
+      <div class="float-right ">
+        <div>
+          <% if current_user.already_favorited?(@post) %>
+            <%= link_to  post_favorites_path(@post), method: :delete do %>
+              <i class="fas fa-heart heart fa-lg"><%= @post.favorites.count%></i>
             <% end %>
-            <a href="#" data-toggle="modal" data-target="#modal1"><i class="far fa-comment ml-2"></i></a>
-          </div>
+          <% else %>
+            <%= link_to post_favorites_path(@post), method: :post do %>
+              <i class="far fa-heart heart fa-lg"><%= @post.favorites.count%></i>
+            <% end %>
+          <% end %>
+          <a href="#" data-toggle="modal" data-target="#modal1"><i class="far fa-comment ml-2 fa-lg"></i></a>
         </div>
-        <div class="modal fade" id="modal1" tabindex="-1"
-              role="dialog" aria-labelledby="label1" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="label1">コメント</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <%= form_with model: @comment,url: post_comments_path(@post.id), remote: true do |f|%>
-                <div class="modal-body">
-                  <div class="form-group">
-                    <%= f.label :text , "テキスト"%>
-                    <%= f.text_area :text, class:"form-control" %>
-                 </div>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
-                  <%= f.submit "コメントする", class: "btn btn-primary"%>
-                </div>
-              <% end %>
+      </div>
+      <div class="modal fade" id="modal1" tabindex="-1"
+            role="dialog" aria-labelledby="label1" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="label1">コメント</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
             </div>
+            <%= form_with model: @comment,url: post_comments_path(@post.id), remote: true do |f|%>
+              <div class="modal-body">
+                <div class="form-group">
+                  <%= f.label :text , "テキスト"%>
+                  <%= f.text_area :text, class:"form-control" %>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+                <%= f.submit "コメントする", class: "btn btn-primary"%>
+              </div>
+            <% end %>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="comments">
-    <h4>＜コメント一覧＞</h4>
-    <div class="comment-form">
-      <%= render "comments", comments: @comments%>
-    </div>
+</div>
+<div class="comments text-center mt-4">
+  <h4>＜コメント一覧＞</h4>
+  <div class="comment-form mx-auto mb-2" style="width:600px;">
+    <%= render "comments", comments: @comments%>
   </div>
 </div>

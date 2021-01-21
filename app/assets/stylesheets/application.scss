@@ -14,6 +14,18 @@
  */
  @import "bootstrap";
 
+ #wrapper {
+   display: flex;
+   flex-direction: column;
+   min-height: 100vh;
+ }
+ 
+ footer {
+   margin-top: auto;
+   background-color:#EEEEEE;
+   height:8vh;
+ }
+
  .login-flash-message {
    color:red;
  }
@@ -21,11 +33,6 @@
  .error-alert {
    color:red;
  }
-
-.image {
-width:400px;
-height:200px;
-}
 
 .message-image {
    width:25vw;
@@ -37,4 +44,43 @@ height:200px;
    color:crimson;
  }
 
- 
+ ul.horizontal-list {
+	overflow-x: auto;
+	white-space: nowrap;
+}
+li.item {
+	display: inline-block;
+	width: 40%;
+	height: 400px;
+	margin: 16px;
+	font-size: 20px;
+	color: black;
+}
+
+.head-title {
+  font-size:60px;
+}
+
+
+.comment-form{
+  border: solid 1px;
+  border-color: lightblue;
+  height:200px;
+  width:50%;
+  overflow:scroll;
+}
+
+.top-header {
+  background-color:#EEEEEE;
+}
+
+@font-face {
+  font-family: "font_1_honokamin";
+  src: url("font_1_honokamin") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: "font_1_honokamin";
+}

@@ -1,5 +1,5 @@
-<nav class="navbar navbar-expand-md navbar-light bg-light">
-  <a class="navbar-brand" href="/">Exercise Motivator</a>
+<nav class="top-header navbar navbar-expand-md navbar-light">
+  <a class="navbar-brand ml-5" href="/">Exercise Motivator</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -8,20 +8,20 @@
     <ul class="navbar-nav">
       <% if user_signed_in? %>
         <li>
-          <a class="nav-link" href= "#"><%= current_user.nickname %>さん</a>
+          <a class="nav-link " href= "#"><%= current_user.nickname %>さん</a>
         </li>
         <li>
-          <a class="nav-link" href="/posts/new">投稿する</a>
+          <a class="nav-link " href="/posts/new">投稿する</a>
         </li>
         <li>
-          <a class="nav-link" name= "logout" data-method="delete" href="/users/sign_out">ログアウト</a>
+          <a class="nav-link " name= "logout" data-method="delete" href="/users/sign_out">ログアウト</a>
         </li>
       <% else %>
         <li>
           <a class="nav-link" href="/users/sign_up">新規登録</a>
         </li>
         <li>
-          <a class="nav-link" href="/users/sign_in">ログイン</a>
+          <a class="nav-link " href="/users/sign_in">ログイン</a>
         </li>
       <% end %>
     </ul>

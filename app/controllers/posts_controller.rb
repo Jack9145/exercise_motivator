@@ -5,7 +5,7 @@ class PostsController < ApplicationController
   
   def index
     @post = Post.new
-    @posts = Post.all
+    @posts = Post.order(created_at: :DESC).limit(10)
   end
 
   def new
