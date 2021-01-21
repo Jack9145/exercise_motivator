@@ -1,36 +1,37 @@
 <div class="ml-5">
-  <h1>投稿一覧</h1>
-  <div class="card-columns">
+  <div class= "head-title text-center">最近の投稿</div>
+  <ul class="horizontal-list">
     <% @posts.each do |post| %>
-      <div class = "card mt-3">
-          <div class="card-body">
-            <div class= "image">
-              <%= image_tag post.image, class: 'message-image' %>
-            </div>
-            <h5 class="card-title"><%= post.title%></h5>
-            <p class="card-text"><%= post.text%></p>
-            <%= link_to post.user.nickname, user_profiles_path(post.user.id) %>
-            <% if user_signed_in?%>
-              <div class="float-right heart" >
-                <%= link_to "詳細", post_path(post.id) %>
-                <% if current_user.already_favorited?(post) %>
-                  <%= link_to  post_favorites_path(post), method: :delete do %>
-                    <i class="fas fa-heart heart ml-1"><%= post.favorites.count%></i>
-                  <% end %>
-                <% else %>
-                  <%= link_to post_favorites_path(post), method: :post do %>
-                    <i class="far fa-heart heart ml-1"><%= post.favorites.count%></i>
-                  <% end %>
-                <% end %>
-              </div>
-            <% else %>
-              <div class="float-right heart">
-                <i class="far fa-heart"><%= post.favorites.count%></i>
-              </div>
-            <% end %>
+    <li class="item">
+      <div class = "card mt-3 border-info bg-light">
+        <div class="card-body">
+          <div class= "image">
+            <%= image_tag post.image, class: 'message-image' %>
           </div>
-        </a>
+          <h5 class="card-title mt-2"><%= post.title %></h5>
+          <p class="card-text"><%= post.text.truncate(30)%></p>
+          <%= link_to post.user.nickname, user_profiles_path(post.user.id) %>
+          <% if user_signed_in?%>
+            <div class="float-right heart" >
+              <%= link_to "詳細", post_path(post.id) %>
+              <% if current_user.already_favorited?(post) %>
+                <%= link_to  post_favorites_path(post), method: :delete do %>
+                  <i class="fas fa-heart heart ml-1"><%= post.favorites.count%></i>
+                <% end %>
+              <% else %>
+                <%= link_to post_favorites_path(post), method: :post do %>
+                  <i class="far fa-heart heart ml-1"><%= post.favorites.count%></i>
+                <% end %>
+              <% end %>
+            </div>
+          <% else %>
+            <div class="float-right heart">
+              <i class="far fa-heart"><%= post.favorites.count%></i>
+            </div>
+          <% end %>
+        </div>
       </div>
+    </li>
     <% end %>
-  </div>
+  </ul>
 </div>

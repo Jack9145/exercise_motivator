@@ -1,11 +1,13 @@
-<% comments.each do |comment| %>
-  <p>
-    <strong><%= link_to comment.user.nickname, "#" %>：</strong>
-    <%= comment.text %>
-    <% if comment.user_id == current_user.id %>
-      <%= link_to post_comment_path(comment.post.id,comment.id),method: :delete  do %>
-        <i class="fas fa-backspace "></i>
+<div class="mt-2">
+  <% comments.each do |comment| %>
+    <p>
+      <strong><%= link_to comment.user.nickname, "#" %>：</strong>
+      <%= comment.text %>
+      <% if comment.user_id == current_user.id %>
+        <%= link_to post_comment_path(comment.post.id,comment.id),method: :delete  do %>
+          <i class="fas fa-backspace "></i>
+        <% end %>
       <% end %>
-    <% end %>
-  </p>
-<% end %>
+    </p>
+  <% end %>
+</div>

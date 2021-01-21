@@ -7,7 +7,7 @@
               <%= image_tag post.image, class: 'message-image' %>
             </div>
             <h5 class="card-title"><%= post.title%></h5>
-            <p class="card-text"><%= post.text%></p>
+            <p class="card-text"><%= post.text.truncate(30)%></p>
             <%= link_to post.user.nickname, user_profiles_path(post.user.id) %>
             <% if user_signed_in?%>
               <div class="float-right heart" >
