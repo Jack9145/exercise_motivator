@@ -1,7 +1,7 @@
 <% if @posts.present?%>
   <div class="card-columns">  
     <% @posts.each do |post| %>
-      <div class = "card mt-3">
+      <div class = "card mt-3 ml-2 border-info bg-light">
           <div class="card-body">
             <div class= "image">
               <%= image_tag post.image, class: 'message-image' %>
